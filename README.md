@@ -1,66 +1,180 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Dynamic CMS with Nested Pages (Laravel-11 or Vue-3)
 
-## About Laravel
+This project is a dynamic Content Management System (CMS) built using **Laravel 11** for the backend. It supports an unlimited nested page structure, allowing you to create, manage, and display pages with dynamic routing and visual tree hierarchy.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+  - [Backend Setup (Laravel)](#backend-setup-laravel)
+- [Running the Project](#running-the-project)
+- [Usage](#usage)
+  - [Dynamic Routing](#dynamic-routing)
+  - [Tree View](#tree-view)
+- [Database Structure](#database-structure)
+- [Development Process](#development-process)
+  - [Unit Testing](#unit-testing)
+  - [Tree Relationship](#tree-relationship)
+- [Assumptions](#assumptions)
+- [License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Overview
 
-## Learning Laravel
+This project features a CMS that allows pages to be nested indefinitely, enabling complex hierarchies of content. It leverages **Laravel**'s self-referencing Eloquent relationships for managing the hierarchical structure and handles dynamic routing for each page based on its position in the tree.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Dynamic Nested Page Structure**: Pages can be nested to any depth.
+- **Dynamic Routing**: Pages can be accessed via dynamic URLs based on their hierarchical position.
+- **CRUD for Pages**: Create, update, delete, and view pages.
+- **Tree Visualization**: A collapsible tree view on the frontend reflects the nested page structure.
+- **Self-Referencing Relationships**: Managed with Eloquent ORM in Laravel.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+### Backend Setup (Laravel)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/CMS-APP-24.git
+   cd CMS-APP-24
+   ```
 
-### Premium Partners
+2. **Install dependencies**:
+   Ensure Composer is installed, then run:
+   ```bash
+   composer install
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+3. **Configure environment**:
+   Copy the `.env.example` to `.env` and generate the application key:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Contributing
+   Update your `.env` file with the correct database connection settings.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. **Run migrations**:
+   Set up the database by running migrations:
+   ```bash
+   php artisan migrate
+   ```
 
-## Code of Conduct
+5. **Serve the backend**:
+   Start the Laravel development server:
+   ```bash
+   php artisan serve
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   The API will be available at `http://localhost:8000`.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Running the Project
+
+Once the backend is set up and running, follow these steps to run the project:
+
+1. **Start the Laravel API (Backend)**:
+   Open your terminal and navigate to the root folder of the project (where the `artisan` file is located). Run the following command to start the Laravel development server:
+   ```bash
+   php artisan serve
+   ```
+   This will start the backend API at `http://localhost:8000`.
+
+2. **Access the Application**:
+   The API will handle requests to fetch page data and resolve dynamic routes based on the hierarchical structure. For frontend visualization, you can either implement your own or integrate it as needed. However, the core backend API and routing logic are ready to be used.
+
+---
+
+## Usage
+
+### Dynamic Routing
+
+The CMS supports dynamic URLs to display nested pages. For example:
+
+- **URL**: `/page1` → Displays content for `Page1`
+- **URL**: `/page1/page2` → Displays content for `Page2` (child of `Page1`)
+- **URL**: `/page1/page2/page1` → Displays `Page1` under `Page2`
+- **URL**: `/page1/page2/page3/page4` → Displays `Page4` under `Page3`
+
+Routing is handled dynamically based on the page hierarchy stored in the database.
+
+### Tree View
+
+Although the frontend is not part of this backend setup, the backend provides a robust API for querying the hierarchical page data. You can build your own frontend tree view or integrate with any frontend system to display the nested page structure. This can be a collapsible tree or any visualization method based on the structure retrieved from the backend.
+
+---
+
+## Database Structure
+
+### Pages Table
+
+The **Pages** table is designed with a self-referencing relationship to support unlimited nesting. It includes the following columns:
+
+| Column     | Type      | Description                                              |
+|------------|-----------|----------------------------------------------------------|
+| id         | INT       | Primary key                                              |
+| parent_id  | INT       | Parent page ID (nullable for root-level pages)           |
+| slug       | VARCHAR   | Slug used for dynamic routing (non-unique)                |
+| title      | VARCHAR   | Title of the page                                        |
+| content    | TEXT      | Content of the page                                      |
+
+**Self-referencing relationship**: Each page can have a parent page (`parent_id`), and the `slug` is used to resolve dynamic routes.
+
+---
+
+## Development Process
+
+### Unit Testing
+
+Unit tests have been written for critical backend logic, including:
+
+- **Page CRUD operations**: Ensures that pages can be created, updated, and deleted correctly.
+- **Route resolution**: Tests that the dynamic routing logic works for resolving nested pages.
+- **Tree relationships**: Verifies that pages maintain proper parent-child relationships during CRUD operations.
+
+### Tree Relationship
+
+The **Pages** model uses Eloquent ORM's self-referencing relationships to manage the hierarchical data:
+
+```php
+public function parent()
+{
+    return $this->belongsTo(Page::class, 'parent_id');
+}
+
+public function children()
+{
+    return $this->hasMany(Page::class, 'parent_id');
+}
+```
+
+This structure allows easy navigation and manipulation of nested pages.
+
+---
+
+## Assumptions
+
+- **Non-unique Slugs**: Pages can have the same slug, but they are distinguished by their position in the hierarchy.
+- **Dynamic Routes**: Routes are not hardcoded and are generated dynamically based on the page hierarchy.
+- **Database**: The database used is **MySQL**.
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+### Conclusion
+
+This dynamic CMS supports nested pages with unlimited depth, dynamic routing, and a flexible CRUD system. It is built using **Laravel** for the backend, focusing on scalability and maintainability.
+
+---
+
+This README now focuses on **Laravel (backend)** setup, running the project, and relevant usage instructions. If you need further customization or additional details, feel free to ask!
