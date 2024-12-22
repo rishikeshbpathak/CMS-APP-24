@@ -174,7 +174,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ### Conclusion
 
 This dynamic CMS supports nested pages with unlimited depth, dynamic routing, and a flexible CRUD system. It is built using **Laravel** for the backend, focusing on scalability and maintainability.
-
----
-
-This README now focuses on **Laravel (backend)** setup, running the project, and relevant usage instructions. If you need further customization or additional details, feel free to ask!
