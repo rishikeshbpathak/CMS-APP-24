@@ -49,6 +49,10 @@ This project features a CMS that allows pages to be nested indefinitely, enablin
    composer install
    ```
 
+    ```bash
+   npm install
+   ```
+
 3. **Configure environment**:
    Copy the `.env.example` to `.env` and generate the application key:
    ```bash
@@ -68,6 +72,10 @@ This project features a CMS that allows pages to be nested indefinitely, enablin
    Start the Laravel development server:
    ```bash
    php artisan serve
+   ```
+
+    ```bash
+   npm run dev
    ```
 
    The API will be available at `http://localhost:8000`.
